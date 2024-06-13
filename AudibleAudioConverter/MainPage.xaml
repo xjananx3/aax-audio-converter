@@ -9,44 +9,117 @@
   <StackPanel utu:SafeArea.Insets="VisibleBounds"
               HorizontalAlignment="Center"
               VerticalAlignment="Top">
-    <Button x:Name="chooseAaxButton"
-          Content="Choose .aax"
-          HorizontalAlignment="Left"
-          Margin="10,20, 10, 10"
-          Click="ChooseAaxButton_Click"/>
-    <TextBox x:Name="aaxFileDisplay"
-             HorizontalAlignment="Center"
-             Height="23"
-             Margin="10, 10, 10, 20"
-             VerticalAlignment="Top"
-             Width="300"/>
-    <Button x:Name="extractButton"
-            Content="Choose Extract Folder"
-            HorizontalAlignment="Left"
-            Margin="10,38, 10, 10"
-            Click="ExtractButton_Click"
-            IsEnabled="False"/>
-    <TextBox x:Name="extractFileDisplay"
-             HorizontalAlignment="Center"
-             Height="23"
-             Margin="10, 10, 10, 10"
-             VerticalAlignment="Top"
-             Width="300"/>
-    <Button x:Name="convertButton"
-            Content="Convert Audible Audio File"
-            HorizontalAlignment="Center"
-            Margin="10,38, 10, 10"
-            Click="ConvertButton_Click"
-            IsEnabled="False"/>
-    <TextBlock
-            Text="Status:"
-            HorizontalAlignment="Left"
-            Margin="10,10,10,10"/>
-    <TextBlock x:Name="statusLbl"
-               Text=""
-               HorizontalAlignment="Left"
-               Margin="10,10,10,10"
-               VerticalAlignment="Top"
-               Width="163"/>
+    <Grid Margin="10">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="Auto"/>
+      </Grid.ColumnDefinitions>
+      <Button x:Name="ChooseAaxButton"
+              Content="Choose .aax"
+              Margin="5"
+              Padding="5"
+              Grid.Row="0"
+              Grid.Column="0"
+              Click="ChooseAaxButton_Click"/>
+      <TextBox x:Name="AaxFileDisplay"
+               Margin="5"
+               Padding="5"
+               Grid.Row="0"
+               Grid.Column="1"
+               Grid.ColumnSpan="4"
+               IsReadOnly="True"
+               Width="300"/>
+
+      <Button x:Name="ExtractFolderButton"
+              Content="Choose Extract Folder"
+              Margin="5"
+              Padding="5"
+              Grid.Row="1"
+              Grid.Column="0"
+              Click="ExtractButton_Click"
+              IsEnabled="False"/>
+      <TextBox x:Name="ExtractFolderDisplay"
+               Margin="5"
+               Padding="5"
+               Grid.Row="1"
+               Grid.Column="1"
+               Grid.ColumnSpan="4"
+               IsReadOnly="True"
+               Width="300"/>
+
+      <TextBlock Text="Format:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="5" />
+      <ComboBox x:Name="FormatComboBox" Grid.Row="2" Grid.Column="1" Margin="5" Padding="5">
+            <ComboBoxItem Content="mp3"/>
+            <ComboBoxItem Content="m4b"/>
+            <ComboBoxItem Content="flac (High Quality)"/>
+      </ComboBox>
+
+      <TextBlock Text="Quality" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="5" />
+      <ComboBox x:Name="QualityComboBox" Grid.Row="2" Grid.Column="3" Margin="5" Padding="5" >
+            <ComboBoxItem Content="Sehr Niedrig"/>
+            <ComboBoxItem Content="Niedrig"/>
+            <ComboBoxItem Content="Mittel"/>
+            <ComboBoxItem Content="Hoch"/>
+            <ComboBoxItem Content="Sehr Hoch"/>
+      </ComboBox>
+      <Button x:Name="ConvertButton"
+              Content="Convert Audible Audio File"
+              Margin="5"
+              Padding="5"
+              Grid.Row="2"
+              Grid.Column="4"
+              Width="80"
+              Click="ConvertButton_Click"
+              IsEnabled="False"/>
+
+      <TextBlock Text="Status:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="5"  />
+      <TextBlock Name="StatusTextBlock" Grid.Row="3" Grid.Column="1" Margin="5"  Visibility="Collapsed" />
+
+      <ProgressBar x:Name="ProgressBar"
+                   Grid.Row="4"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="5"
+                   Margin="5"
+                   Height="25"></ProgressBar>
+
+      <ScrollViewer x:Name="LogScrollViewer"
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="5"
+                    Margin="5"
+                    VerticalScrollBarVisibility="Auto"
+                    Height="100">
+          <TextBox x:Name="LogTextBox"/>
+      </ScrollViewer>
+
+      <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="5" Orientation="Horizontal" HorizontalAlignment="Right">
+      <Button x:Name="CancelButton"
+              Content="Cancel"
+              Margin="5" Padding="5"
+              Width="80"
+              Click="CancelButton_Click"/>
+      <Button x:Name="OpenOutputButton"
+              Content="Open Output Folder"
+              Margin="5" Padding="5"
+              Width="150"
+              Click="OpenOutputButton_Click"
+              Visibility="Collapsed"/>
+      </StackPanel>
+    </Grid>
+
+
   </StackPanel>
 </Page>
