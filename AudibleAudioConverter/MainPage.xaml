@@ -38,5 +38,15 @@
             Margin="10,38, 10, 10"
             Click="ConvertButton_Click"
             IsEnabled="False"/>
+    <TextBlock
+            Text="Status:"
+            HorizontalAlignment="Left"
+            Margin="10,10,10,10"/>
+    <TextBlock x:Name="statuslbl"
+               Text=""
+               HorizontalAlignment="Left"
+               Margin="10,10,10,10"
+               VerticalAlignment="Top"
+               Width="163"/>
   </StackPanel>
 </Page>
