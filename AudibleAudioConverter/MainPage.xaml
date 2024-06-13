@@ -42,7 +42,7 @@
             Text="Status:"
             HorizontalAlignment="Left"
             Margin="10,10,10,10"/>
-    <TextBlock x:Name="statuslbl"
+    <TextBlock x:Name="statusLbl"
                Text=""
                HorizontalAlignment="Left"
                Margin="10,10,10,10"

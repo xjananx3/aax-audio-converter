@@ -56,6 +56,8 @@ public sealed partial class MainPage : Page
     
     private async Task ConvertingFileProcess(string arguments)
     {
+        statusLbl.Text = "Converting File...";
+        
         Process ffmProcess = new Process();
         ffmProcess.StartInfo.FileName = "ffmpeg";
         ffmProcess.StartInfo.Arguments = arguments;
@@ -75,10 +77,14 @@ public sealed partial class MainPage : Page
         chooseAaxButton.IsEnabled = true;
         convertButton.IsEnabled = true;
         
+        statusLbl.Text = "Conversion Complete!";
+        
     }
     
     private string GetArguments(object activationBytes)
     {
+        statusLbl.Text = "Getting Arguments";
+        
         string fileout = Path.Combine(extractFileDisplay.Text, Path.GetFileNameWithoutExtension(aaxFileDisplay.Text) + GetOutExtension());
         
         string arg = @"-y -activation_bytes ";
@@ -98,6 +104,8 @@ public sealed partial class MainPage : Page
     
     private async Task<object> GetBytes(string checksum)
     {
+        statusLbl.Text = "Getting Activation bytes";
+        
         var activationBytes = await AaxActivationClient.Instance.ResolveActivationBytes(checksum);
         
         return activationBytes;
@@ -105,6 +113,8 @@ public sealed partial class MainPage : Page
     
     private string GetHash()
     {
+        statusLbl.Text = "Getting File Hash";
+        
         var checksum = ActivationByteHashExtractor.GetActivationChecksum(aaxFileDisplay.Text);
         
         return checksum;
