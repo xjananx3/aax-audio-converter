@@ -24,12 +24,19 @@
             Content="Choose Extract Folder"
             HorizontalAlignment="Left"
             Margin="10,38, 10, 10"
-            Click="ExtractButton_Click"/>
+            Click="ExtractButton_Click"
+            IsEnabled="False"/>
     <TextBox x:Name="extractFileDisplay"
              HorizontalAlignment="Center"
              Height="23"
              Margin="10, 10, 10, 10"
              VerticalAlignment="Top"
              Width="300"/>
+    <Button x:Name="convertButton"
+            Content="Convert Audible Audio File"
+            HorizontalAlignment="Center"
+            Margin="10,38, 10, 10"
+            Click="ConvertButton_Click"
+            IsEnabled="False"/>
   </StackPanel>
 </Page>
