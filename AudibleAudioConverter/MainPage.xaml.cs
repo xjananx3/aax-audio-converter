@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Aax.Activation.ApiClient;
 using Uno.Disposables;
 
@@ -50,6 +51,30 @@ public sealed partial class MainPage : Page
         var checksum = GetHash();
         var activationBytes = await GetBytes(checksum);
         string arguments = GetArguments(activationBytes);
+        await ConvertingFileProcess(arguments);
+    }
+    
+    private async Task ConvertingFileProcess(string arguments)
+    {
+        Process ffmProcess = new Process();
+        ffmProcess.StartInfo.FileName = "ffmpeg";
+        ffmProcess.StartInfo.Arguments = arguments;
+        ffmProcess.StartInfo.CreateNoWindow = true;
+        ffmProcess.StartInfo.RedirectStandardError = true;
+        ffmProcess.StartInfo.UseShellExecute = false;
+        ffmProcess.EnableRaisingEvents = true;
+        
+        ffmProcess.Start();
+        
+        ffmProcess.BeginErrorReadLine();
+        ffmProcess.BeginOutputReadLine();
+        await ffmProcess.WaitForExitAsync();
+        
+        ffmProcess.Close();
+        
+        chooseAaxButton.IsEnabled = true;
+        convertButton.IsEnabled = true;
+        
     }
     
     private string GetArguments(object activationBytes)
