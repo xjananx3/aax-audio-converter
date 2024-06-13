@@ -30,5 +30,8 @@
     </UnoFeatures>
     <RootNamespace>AudibleAudioConverter</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Aax.Activation.ApiClient" />
+  </ItemGroup>
 
 </Project>
