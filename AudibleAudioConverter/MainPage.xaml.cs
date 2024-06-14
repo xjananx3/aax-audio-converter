@@ -42,7 +42,9 @@ public sealed partial class MainPage : Page
     private async void ConvertButton_Click(object sender, RoutedEventArgs e)
     {
         DisableElements();
+        StartBar();
         StatusTextBlock.Visibility = Visibility.Visible;
+        
         
         await Conversion();
         
@@ -53,12 +55,15 @@ public sealed partial class MainPage : Page
         var checksum = GetHash();
         var activationBytes = await GetBytes(checksum);
         var arguments = GetArguments(activationBytes);
-        await StartConversion(arguments);
+        var totalDuration = await GetFileDurationAsync();
+        await StartConversion(arguments, totalDuration);
     }
     
-    private async Task StartConversion(string arguments)
+    private async Task StartConversion(string arguments, double totalDuration)
     {
         StatusTextBlock.Text = "Converting File...";
+        ProgressBar.Value = 0;
+        ProgressBar.Visibility = Visibility.Visible;
         
         ProcessStartInfo startInfo = new ProcessStartInfo
         {
@@ -77,7 +82,7 @@ public sealed partial class MainPage : Page
         };
         
         process.OutputDataReceived += (sender, e) => WriteToLog(e.Data);
-        process.ErrorDataReceived += (sender, e) => WriteToLog(e.Data);
+        process.ErrorDataReceived += (sender, e) => ProcessErrorData(e.Data, totalDuration);
         process.Start();
         process.BeginOutputReadLine();
         process.BeginErrorReadLine();
@@ -86,23 +91,92 @@ public sealed partial class MainPage : Page
         
         Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
         {
+            StopBar();
+            EnableElements();
             StatusTextBlock.Text = "Conversion Completed";
             OpenOutputButton.Visibility = Visibility.Visible;
         });
+    }
+    
+    private async void ProcessErrorData(string data, double totalDuration)
+    {
+        if(string.IsNullOrEmpty(data)) return;
         
-        EnableElements();
+        if (data.Contains("time="))
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                double percentage = ParseProgress(data, totalDuration);
+                ProgressBar.Value = percentage;
+            });
+        }
+    }
+    
+    private double ParseProgress(string data, double totalDuration)
+    {
+        try
+        {
+            var timeIndex = data.IndexOf("time=", StringComparison.Ordinal);
+            if (timeIndex != -1)
+            {
+                var timeString = data.Substring(timeIndex + 5, 11);
+                var timeSpan = TimeSpan.ParseExact(timeString, @"hh\:mm\:ss\.ff", null);
+                
+                if (totalDuration > 0)
+                {
+                    return timeSpan.TotalSeconds / totalDuration * 100;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Error parsing progress: {ex.Message}");
+            
+            return 0;
+        }
         
+        return 0;
+    }
+    
+    private async Task<double> GetFileDurationAsync()
+    {
+        var tcs = new TaskCompletionSource<double>();
+        
+        ProcessStartInfo startInfo = new ProcessStartInfo
+        {
+            FileName = "ffprobe",
+            Arguments = $"-v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 \"{AaxFileDisplay.Text}\"",
+            RedirectStandardOutput = true,
+            UseShellExecute = false,
+            CreateNoWindow = true
+        };
+        
+        using (var process = new Process())
+        {
+            process.StartInfo = startInfo;
+            process.OutputDataReceived += (sender, e) =>
+            {
+                if (double.TryParse(e.Data, out double duration))
+                {
+                    tcs.SetResult(duration);
+                }
+            };
+            process.Start();
+            process.BeginOutputReadLine();
+            
+            await process.WaitForExitAsync();
+        }
+        
+        return await tcs.Task;
     }
     
     private void WriteToLog(string data)
     {
-        Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+        if (!string.IsNullOrEmpty(data))
         {
-            if (!string.IsNullOrEmpty(data))
-            {
-                //LogTextBox.Text.Append(data + Environment.NewLine);
-            }
-        });
+            // Hier könntest du zusätzliche Ausgaben verarbeiten oder protokollieren
+            Debug.WriteLine($"ffmpeg Output: {data}");
+        }
     }
     
     private string GetArguments(object activationBytes)
@@ -160,7 +234,7 @@ public sealed partial class MainPage : Page
     {
         StatusTextBlock.Text = "Getting File Hash";
         
-        var checksum = ActivationByteHashExtractor.GetActivationChecksum(AaxFileDisplay.Text);
+        var checksum = HashExtractor.GetActivationChecksum(AaxFileDisplay.Text);
         
         return checksum;
     }
@@ -182,13 +256,13 @@ public sealed partial class MainPage : Page
     
     private void EnableElements()
     {
-        ChooseAaxButton.IsEnabled = false;
+        ChooseAaxButton.IsEnabled = true;
         
-        AaxFileDisplay.IsEnabled = false;
-        ExtractFolderDisplay.IsEnabled = false;
+        AaxFileDisplay.IsEnabled = true;
+        ExtractFolderDisplay.IsEnabled = true;
         
-        FormatComboBox.IsEnabled = false;
-        QualityComboBox.IsEnabled = false;
+        FormatComboBox.IsEnabled = true;
+        QualityComboBox.IsEnabled = true;
     }
     
     private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -199,5 +273,16 @@ public sealed partial class MainPage : Page
     private void OpenOutputButton_Click(object sender, RoutedEventArgs e)
     {
         throw new NotImplementedException();
+    }
+    
+    private void StartBar()
+    {
+        ProgressBar.IsIndeterminate = true;
+    }
+    
+    private void StopBar()
+    {
+        ProgressBar.IsIndeterminate = false;
+        ProgressBar.Value = 0.1;
     }
 }
