@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Windows.UI.Core;
 using Aax.Activation.ApiClient;
 using Uno.Disposables;
 
@@ -41,60 +42,67 @@ public sealed partial class MainPage : Page
     private async void ConvertButton_Click(object sender, RoutedEventArgs e)
     {
         DisableElements();
+        StatusTextBlock.Visibility = Visibility.Visible;
         
-        await StartConversion();
+        await Conversion();
         
     }
     
-    private async Task StartConversion()
+    private async Task Conversion()
     {
         var checksum = GetHash();
         var activationBytes = await GetBytes(checksum);
         var arguments = GetArguments(activationBytes);
-        await ConvertingFileProcess(arguments);
+        await StartConversion(arguments);
     }
     
-    private async Task ConvertingFileProcess(string arguments)
+    private async Task StartConversion(string arguments)
     {
         StatusTextBlock.Text = "Converting File...";
         
-        Process ffmProcess = new Process();
-        ffmProcess.StartInfo.FileName = "ffmpeg";
-        ffmProcess.StartInfo.Arguments = arguments;
-        ffmProcess.StartInfo.CreateNoWindow = true;
-        ffmProcess.StartInfo.RedirectStandardError = true;
-        ffmProcess.StartInfo.UseShellExecute = false;
-        ffmProcess.EnableRaisingEvents = true;
-        
-        ffmProcess.Start();
-        
-        ffmProcess.ErrorDataReceived += (sender, e) =>
+        ProcessStartInfo startInfo = new ProcessStartInfo
         {
-            if (!string.IsNullOrEmpty(e.Data))
-            {
-                LogTextBox.Text.Append(e.Data + Environment.NewLine);
-            }
+            FileName = "ffmpeg",
+            Arguments = arguments,
+            CreateNoWindow = true,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            UseShellExecute = false,
         };
         
-        ffmProcess.OutputDataReceived += (sender, e) =>
+        Process process = new Process()
         {
-            if (!string.IsNullOrEmpty(e.Data))
-            {
-                LogTextBox.Text.Append(e.Data + Environment.NewLine);
-            }
+            StartInfo = startInfo,
+            EnableRaisingEvents = true
         };
         
-        ffmProcess.BeginErrorReadLine();
-        ffmProcess.BeginOutputReadLine();
-        await ffmProcess.WaitForExitAsync();
+        process.OutputDataReceived += (sender, e) => WriteToLog(e.Data);
+        process.ErrorDataReceived += (sender, e) => WriteToLog(e.Data);
+        process.Start();
+        process.BeginOutputReadLine();
+        process.BeginErrorReadLine();
         
-        ffmProcess.Close();
+        await Task.Run(() => process.WaitForExitAsync());
         
-        ChooseAaxButton.IsEnabled = true;
-        ConvertButton.IsEnabled = true;
+        Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+        {
+            StatusTextBlock.Text = "Conversion Completed";
+            OpenOutputButton.Visibility = Visibility.Visible;
+        });
         
-        StatusTextBlock.Text = "Conversion Complete!";
+        EnableElements();
         
+    }
+    
+    private void WriteToLog(string data)
+    {
+        Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+        {
+            if (!string.IsNullOrEmpty(data))
+            {
+                //LogTextBox.Text.Append(data + Environment.NewLine);
+            }
+        });
     }
     
     private string GetArguments(object activationBytes)
@@ -107,7 +115,7 @@ public sealed partial class MainPage : Page
         string arg = @"-y -activation_bytes ";
         string arg1 = @" -i ";
         string arg2 = @" -ab ";
-        string arg3 = @"k -map_metadata 0 -id3v2_version 3 -vn ";
+        string arg3 = @" -map_metadata 0 -id3v2_version 3 -vn ";
         
         string arguments = arg + activationBytes + arg1 + AaxFileDisplay.Text + arg2 + quality + arg3 + fileout;
         
@@ -132,10 +140,10 @@ public sealed partial class MainPage : Page
     {
         switch (FormatComboBox.SelectedIndex)
         {
-            case 0: return "mp3";
-            case 1: return "m4b";
-            case 2: return "flac";
-            default: return "mp3";
+            case 0: return ".mp3";
+            case 1: return ".m4b";
+            case 2: return ".flac";
+            default: return ".mp3";
         }
     }
     
@@ -167,6 +175,20 @@ public sealed partial class MainPage : Page
         //Textboxes
         AaxFileDisplay.IsEnabled = false;
         ExtractFolderDisplay.IsEnabled = false;
+        
+        FormatComboBox.IsEnabled = false;
+        QualityComboBox.IsEnabled = false;
+    }
+    
+    private void EnableElements()
+    {
+        ChooseAaxButton.IsEnabled = false;
+        
+        AaxFileDisplay.IsEnabled = false;
+        ExtractFolderDisplay.IsEnabled = false;
+        
+        FormatComboBox.IsEnabled = false;
+        QualityComboBox.IsEnabled = false;
     }
     
     private void CancelButton_Click(object sender, RoutedEventArgs e)
