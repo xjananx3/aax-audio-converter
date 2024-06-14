@@ -76,7 +76,7 @@
             <ComboBoxItem Content="320 kbit/s - Very High"/>
       </ComboBox>
       <Button x:Name="ConvertButton"
-              Content="Convert Audible Audio File"
+              Content="Convert"
               Margin="5"
               Padding="5"
               Grid.Row="2"
@@ -94,16 +94,6 @@
                    Grid.ColumnSpan="5"
                    Margin="5"
                    Height="25"></ProgressBar>
-
-      <ScrollViewer x:Name="LogScrollViewer"
-                    Grid.Row="5"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="5"
-                    Margin="5"
-                    VerticalScrollBarVisibility="Auto"
-                    Height="100">
-          <TextBox x:Name="LogTextBox"/>
-      </ScrollViewer>
 
       <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="5" Orientation="Horizontal" HorizontalAlignment="Right">
       <Button x:Name="CancelButton"

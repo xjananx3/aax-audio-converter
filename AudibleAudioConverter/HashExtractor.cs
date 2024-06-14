@@ -2,7 +2,7 @@ using System.Text;
 
 namespace AudibleAudioConverter;
 
-public static class ActivationByteHashExtractor
+public static class HashExtractor
 {
     public static string GetActivationChecksum(string path)
     {
