@@ -18,9 +18,9 @@ public sealed partial class MainPage : Page
         fop.FileOpenPicker.FileTypeFilter.Add(".aax");
             
         var storageFile = await fop.FileOpenPicker.PickSingleFileAsync();
-        aaxFileDisplay.Text = storageFile.Path;
+        AaxFileDisplay.Text = storageFile.Path;
         
-        extractButton.IsEnabled = true;
+        ExtractFolderButton.IsEnabled = true;
         
         fop.TryDispose();
     }
@@ -31,9 +31,9 @@ public sealed partial class MainPage : Page
         fop.FolderPicker.FileTypeFilter.Add("*");
         
         var storageFolder = await fop.FolderPicker.PickSingleFolderAsync();
-        extractFileDisplay.Text = storageFolder.Path;
+        ExtractFolderDisplay.Text = storageFolder.Path;
         
-        convertButton.IsEnabled = true;
+        ConvertButton.IsEnabled = true;
         
         fop.TryDispose();
     }
@@ -50,13 +50,13 @@ public sealed partial class MainPage : Page
     {
         var checksum = GetHash();
         var activationBytes = await GetBytes(checksum);
-        string arguments = GetArguments(activationBytes);
+        var arguments = GetArguments(activationBytes);
         await ConvertingFileProcess(arguments);
     }
     
     private async Task ConvertingFileProcess(string arguments)
     {
-        statusLbl.Text = "Converting File...";
+        StatusTextBlock.Text = "Converting File...";
         
         Process ffmProcess = new Process();
         ffmProcess.StartInfo.FileName = "ffmpeg";
@@ -68,43 +68,80 @@ public sealed partial class MainPage : Page
         
         ffmProcess.Start();
         
+        ffmProcess.ErrorDataReceived += (sender, e) =>
+        {
+            if (!string.IsNullOrEmpty(e.Data))
+            {
+                LogTextBox.Text.Append(e.Data + Environment.NewLine);
+            }
+        };
+        
+        ffmProcess.OutputDataReceived += (sender, e) =>
+        {
+            if (!string.IsNullOrEmpty(e.Data))
+            {
+                LogTextBox.Text.Append(e.Data + Environment.NewLine);
+            }
+        };
+        
         ffmProcess.BeginErrorReadLine();
         ffmProcess.BeginOutputReadLine();
         await ffmProcess.WaitForExitAsync();
         
         ffmProcess.Close();
         
-        chooseAaxButton.IsEnabled = true;
-        convertButton.IsEnabled = true;
+        ChooseAaxButton.IsEnabled = true;
+        ConvertButton.IsEnabled = true;
         
-        statusLbl.Text = "Conversion Complete!";
+        StatusTextBlock.Text = "Conversion Complete!";
         
     }
     
     private string GetArguments(object activationBytes)
     {
-        statusLbl.Text = "Getting Arguments";
+        StatusTextBlock.Text = "Getting Arguments";
         
-        string fileout = Path.Combine(extractFileDisplay.Text, Path.GetFileNameWithoutExtension(aaxFileDisplay.Text) + GetOutExtension());
+        string fileout = Path.Combine(ExtractFolderDisplay.Text, Path.GetFileNameWithoutExtension(AaxFileDisplay.Text) + GetOutExtension());
+        string quality = GetSelectedQuality();
         
         string arg = @"-y -activation_bytes ";
         string arg1 = @" -i ";
         string arg2 = @" -ab ";
         string arg3 = @"k -map_metadata 0 -id3v2_version 3 -vn ";
         
-        string arguments = arg + activationBytes + arg1 + aaxFileDisplay.Text + arg3 + fileout;
+        string arguments = arg + activationBytes + arg1 + AaxFileDisplay.Text + arg2 + quality + arg3 + fileout;
         
         return arguments;
     }
     
-    private string GetOutExtension()
+    
+    private string GetSelectedQuality()
     {
-        return ".mp3";
+        switch (QualityComboBox.SelectedIndex)
+        {
+            case 0: return "32k"; //Very Low
+            case 1: return "80k";
+            case 2: return "160k"; //Medium
+            case 3: return "256k"; 
+            case 4: return "320k";  //Very High
+            default: return "96k"; 
+        }
     }
     
-    private async Task<object> GetBytes(string checksum)
+    private string GetOutExtension()
     {
-        statusLbl.Text = "Getting Activation bytes";
+        switch (FormatComboBox.SelectedIndex)
+        {
+            case 0: return "mp3";
+            case 1: return "m4b";
+            case 2: return "flac";
+            default: return "mp3";
+        }
+    }
+    
+    private async Task<string> GetBytes(string checksum)
+    {
+        StatusTextBlock.Text = "Getting Activation bytes";
         
         var activationBytes = await AaxActivationClient.Instance.ResolveActivationBytes(checksum);
         
@@ -113,9 +150,9 @@ public sealed partial class MainPage : Page
     
     private string GetHash()
     {
-        statusLbl.Text = "Getting File Hash";
+        StatusTextBlock.Text = "Getting File Hash";
         
-        var checksum = ActivationByteHashExtractor.GetActivationChecksum(aaxFileDisplay.Text);
+        var checksum = ActivationByteHashExtractor.GetActivationChecksum(AaxFileDisplay.Text);
         
         return checksum;
     }
@@ -123,12 +160,22 @@ public sealed partial class MainPage : Page
     private void DisableElements()
     {
         //Buttons
-        chooseAaxButton.IsEnabled = false;
-        extractButton.IsEnabled = false;
-        convertButton.IsEnabled = false;
+        ChooseAaxButton.IsEnabled = false;
+        ExtractFolderButton.IsEnabled = false;
+        ConvertButton.IsEnabled = false;
         
         //Textboxes
-        aaxFileDisplay.IsEnabled = false;
-        extractFileDisplay.IsEnabled = false;
+        AaxFileDisplay.IsEnabled = false;
+        ExtractFolderDisplay.IsEnabled = false;
+    }
+    
+    private void CancelButton_Click(object sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+    
+    private void OpenOutputButton_Click(object sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
     }
 }
