@@ -62,18 +62,18 @@
 
       <TextBlock Text="Format:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="5" />
       <ComboBox x:Name="FormatComboBox" Grid.Row="2" Grid.Column="1" Margin="5" Padding="5">
-            <ComboBoxItem Content="mp3"/>
+            <ComboBoxItem Content="mp3" IsSelected="True"/>
             <ComboBoxItem Content="m4b"/>
             <ComboBoxItem Content="flac (High Quality)"/>
       </ComboBox>
 
       <TextBlock Text="Quality" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="5" />
       <ComboBox x:Name="QualityComboBox" Grid.Row="2" Grid.Column="3" Margin="5" Padding="5" >
-            <ComboBoxItem Content="Sehr Niedrig"/>
-            <ComboBoxItem Content="Niedrig"/>
-            <ComboBoxItem Content="Mittel"/>
-            <ComboBoxItem Content="Hoch"/>
-            <ComboBoxItem Content="Sehr Hoch"/>
+            <ComboBoxItem Content="32 kbit/s - Very Low"/>
+            <ComboBoxItem Content="80 kbit/s - Low"/>
+            <ComboBoxItem Content="160 kbit/s - Medium" IsSelected="True"/>
+            <ComboBoxItem Content="256 kbit/s - High"/>
+            <ComboBoxItem Content="320 kbit/s - Very High"/>
       </ComboBox>
       <Button x:Name="ConvertButton"
               Content="Convert Audible Audio File"
