@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.2.32210.308
 MinimumVisualStudioVersion = 15.0.26124.0
 
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AudibleAudioConverter", "/home/jack/Sources/audible-audio-converter/AudibleAudioConverter/AudibleAudioConverter.csproj", "{8B91883F-C1BA-477C-9563-AA0302A33943}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AaxAudioConverter", "AaxAudioConverter\AaxAudioConverter.csproj", "{8B91883F-C1BA-477C-9563-AA0302A33943}"
 EndProject
 
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BADA71DC-7FFD-4EDC-9F28-FB74AEADC713}"

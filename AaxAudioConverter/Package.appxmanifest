@@ -7,13 +7,13 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="AudibleAudioConverter"
+    Name="AaxAudioConverter"
     Publisher="O=xjananx3"
     Version="1.0.0.0" />
 
   <Properties>
-    <DisplayName>AudibleAudioConverter</DisplayName>
-    <PublisherDisplayName>AudibleAudioConverter</PublisherDisplayName>
+    <DisplayName>AaxAudioConverter</DisplayName>
+    <PublisherDisplayName>AaxAudioConverter</PublisherDisplayName>
   </Properties>
 
   <Dependencies>
@@ -30,8 +30,8 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="AudibleAudioConverter"
-        Description="AudibleAudioConverter">
+        DisplayName="AaxAudioConverter"
+        Description="AaxAudioConverter">
         <uap:SplashScreen />
       </uap:VisualElements>
     </Application>
