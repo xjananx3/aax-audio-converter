@@ -86,7 +86,7 @@
               IsEnabled="False"/>
 
       <TextBlock Text="Status:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="5"  />
-      <TextBlock Name="StatusTextBlock" Grid.Row="3" Grid.Column="1" Margin="5"  Visibility="Collapsed" />
+      <TextBlock Name="StatusTextBlock" Grid.Row="3" Grid.Column="1" Margin="5"  />
 
       <ProgressBar x:Name="ProgressBar"
                    Grid.Row="4"
@@ -97,6 +97,11 @@
 
       <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="5" Orientation="Horizontal" HorizontalAlignment="Right">
 
+      <Button x:Name="CancelButton"
+              Content="Cancel"
+              Margin="5" Padding="5"
+              Width="150"
+              Click="CancelButton_Click"/>
       <Button x:Name="OpenOutputButton"
               Content="Open Output Folder"
               Margin="5" Padding="5"
