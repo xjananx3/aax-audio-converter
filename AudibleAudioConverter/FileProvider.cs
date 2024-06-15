@@ -4,17 +4,23 @@ namespace AudibleAudioConverter;
 
 public class FileProvider
 {
-    public FileOpenPicker FileOpenPicker { get; set; } = new()
+    public async Task<string> ChooseFileAsync(string fileTypeFiler)
     {
+        var fileOpenPicker = new FileOpenPicker();
+        fileOpenPicker.FileTypeFilter.Add(fileTypeFiler);
+        var file = await fileOpenPicker.PickSingleFileAsync();
         
-        SuggestedStartLocation = PickerLocationId.ComputerFolder
-        
-    };
+        return file.Path;
+    }
     
-    public FolderPicker FolderPicker { get; set; } = new()
+    public async Task<string> ChooseFolderAsync()
     {
+        var folderPicker = new FolderPicker();
+        folderPicker.FileTypeFilter.Add("*");
+        var folder = await folderPicker.PickSingleFolderAsync();
         
-        SuggestedStartLocation = PickerLocationId.ComputerFolder
-        
-    };
+        return folder.Path;
+    }
+    
+   
 }

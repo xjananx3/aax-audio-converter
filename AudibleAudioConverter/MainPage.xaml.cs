@@ -7,6 +7,7 @@ namespace AudibleAudioConverter;
 
 public sealed partial class MainPage : Page
 {
+    private readonly FileProvider _fileProvider = new();
     public MainPage()
     {
         InitializeComponent();
@@ -14,29 +15,18 @@ public sealed partial class MainPage : Page
     
     private async void ChooseAaxButton_Click(object sender, RoutedEventArgs e)
     {
-       
-        var fop = new FileProvider();
-        fop.FileOpenPicker.FileTypeFilter.Add(".aax");
-            
-        var storageFile = await fop.FileOpenPicker.PickSingleFileAsync();
-        AaxFileDisplay.Text = storageFile.Path;
         
+        var filePath = await _fileProvider.ChooseFileAsync(".aax");
+        AaxFileDisplay.Text = filePath;
         ExtractFolderButton.IsEnabled = true;
-        
-        fop.TryDispose();
     }
     
     private async void ExtractButton_Click(object sender, RoutedEventArgs e)
     {
-        var fop = new FileProvider();
-        fop.FolderPicker.FileTypeFilter.Add("*");
-        
-        var storageFolder = await fop.FolderPicker.PickSingleFolderAsync();
-        ExtractFolderDisplay.Text = storageFolder.Path;
+        var folderPath = await _fileProvider.ChooseFolderAsync();
+        ExtractFolderDisplay.Text = folderPath;
         
         ConvertButton.IsEnabled = true;
-        
-        fop.TryDispose();
     }
     
     private async void ConvertButton_Click(object sender, RoutedEventArgs e)
