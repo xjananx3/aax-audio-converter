@@ -16,25 +16,25 @@ public sealed partial class MainPage : Page
     
     private async void ChooseAaxButton_Click(object sender, RoutedEventArgs e)
     {
-        
         var filePath = await _fileProvider.ChooseFileAsync(".aax");
         AaxFileDisplay.Text = filePath;
         ExtractFolderButton.IsEnabled = true;
+        ShowStatus("AAX file selected");
     }
     
     private async void ExtractButton_Click(object sender, RoutedEventArgs e)
     {
         var folderPath = await _fileProvider.ChooseFolderAsync();
         ExtractFolderDisplay.Text = folderPath;
-        
         ConvertButton.IsEnabled = true;
+        ShowStatus("Extraction folder selected.");
     }
     
     private async void ConvertButton_Click(object sender, RoutedEventArgs e)
     {
         DisableElements();
         StartBar();
-        
+        ShowStatus("Starting Conversion...");
         await _conversionManager.StartConversionAsync(
             AaxFileDisplay.Text,
             ExtractFolderDisplay.Text,
@@ -45,7 +45,43 @@ public sealed partial class MainPage : Page
         
         EnableElements();
         StopBar();
+        ShowStatus("Conversion Completed");
         OpenOutputButton.Visibility = Visibility.Visible;
+    }
+    
+    private void CancelButton_Click(object sender, RoutedEventArgs e)
+    {
+        _conversionManager.CancelConversion();
+        ShowStatus("Conversion Canceled");
+        StopBar();
+        // EnableElements();
+    }
+    
+    private void OpenOutputButton_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            string outputFolderPath = ExtractFolderDisplay.Text;
+            
+            if (Directory.Exists(outputFolderPath))
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = outputFolderPath,
+                    UseShellExecute = true,
+                    Verb = "open"
+                });
+            }
+            else
+            {
+                StatusTextBlock.Text = "Output folder not found";
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Error opening output folder: {ex.Message}");
+            StatusTextBlock.Text = "Error occurred while opening the output folder";
+        }
     }
     
     private void ShowStatus(string message)
@@ -85,15 +121,11 @@ public sealed partial class MainPage : Page
     
     private void DisableElements()
     {
-        //Buttons
         ChooseAaxButton.IsEnabled = false;
         ExtractFolderButton.IsEnabled = false;
         ConvertButton.IsEnabled = false;
-        
-        //Textboxes
         AaxFileDisplay.IsEnabled = false;
         ExtractFolderDisplay.IsEnabled = false;
-        
         FormatComboBox.IsEnabled = false;
         QualityComboBox.IsEnabled = false;
     }
@@ -101,39 +133,10 @@ public sealed partial class MainPage : Page
     private void EnableElements()
     {
         ChooseAaxButton.IsEnabled = true;
-        
         AaxFileDisplay.IsEnabled = true;
         ExtractFolderDisplay.IsEnabled = true;
-        
         FormatComboBox.IsEnabled = true;
         QualityComboBox.IsEnabled = true;
-    }
-    
-    private void OpenOutputButton_Click(object sender, RoutedEventArgs e)
-    {
-        try
-        {
-            string outputFolderPath = ExtractFolderDisplay.Text;
-            
-            if (Directory.Exists(outputFolderPath))
-            {
-                Process.Start(new ProcessStartInfo
-                {
-                    FileName = outputFolderPath,
-                    UseShellExecute = true,
-                    Verb = "open"
-                });
-            }
-            else
-            {
-                StatusTextBlock.Text = "Output folder not found";
-            }
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine($"Error opening output folder: {ex.Message}");
-            StatusTextBlock.Text = "Error occurred while opening the output folder";
-        }
     }
     
     private void StartBar()
@@ -146,4 +149,5 @@ public sealed partial class MainPage : Page
         ProgressBar.IsIndeterminate = false;
         ProgressBar.Value = 0.1;
     }
+    
 }
