@@ -96,11 +96,7 @@
                    Height="25"></ProgressBar>
 
       <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="5" Orientation="Horizontal" HorizontalAlignment="Right">
-      <Button x:Name="CancelButton"
-              Content="Cancel"
-              Margin="5" Padding="5"
-              Width="80"
-              Click="CancelButton_Click"/>
+
       <Button x:Name="OpenOutputButton"
               Content="Open Output Folder"
               Margin="5" Padding="5"

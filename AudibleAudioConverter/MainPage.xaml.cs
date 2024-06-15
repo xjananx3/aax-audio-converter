@@ -265,14 +265,31 @@ public sealed partial class MainPage : Page
         QualityComboBox.IsEnabled = true;
     }
     
-    private void CancelButton_Click(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-    
     private void OpenOutputButton_Click(object sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        try
+        {
+            string outputFolderPath = ExtractFolderDisplay.Text;
+            
+            if (Directory.Exists(outputFolderPath))
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = outputFolderPath,
+                    UseShellExecute = true,
+                    Verb = "open"
+                });
+            }
+            else
+            {
+                StatusTextBlock.Text = "Output folder not found";
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Error opening output folder: {ex.Message}");
+            StatusTextBlock.Text = "Error occurred while opening the output folder";
+        }
     }
     
     private void StartBar()
