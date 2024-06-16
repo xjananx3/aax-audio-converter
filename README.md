@@ -26,7 +26,6 @@ A simple and efficient audio converter to convert .aax files (Audible audiobooks
 ## Contribution
 Contributions are welcome! Please open an issue or submit a pull request with your improvements.
 
-
 ## Acknowledgements
 -   **FFmpeg**: Used for audio conversion.
 -   **Uno Platform**: For enabling cross-platform development.
