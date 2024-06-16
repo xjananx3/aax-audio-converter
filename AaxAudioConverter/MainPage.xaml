@@ -101,7 +101,8 @@
               Content="Cancel"
               Margin="5" Padding="5"
               Width="150"
-              Click="CancelButton_Click"/>
+              Click="CancelButton_Click"
+              Visibility="Collapsed"/>
       <Button x:Name="OpenOutputButton"
               Content="Open Output Folder"
               Margin="5" Padding="5"

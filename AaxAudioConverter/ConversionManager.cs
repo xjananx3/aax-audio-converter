@@ -1,3 +1,4 @@
+using System.Data;
 using System.Diagnostics;
 using Aax.Activation.ApiClient;
 
@@ -6,6 +7,7 @@ namespace AudibleAudioConverter;
 public class ConversionManager
 {
     private Process _conversionProcess;
+    private CancellationTokenSource _cancellationTokenSource;
     
     public async Task StartConversionAsync(
         string aaxFilePath,
@@ -15,6 +17,8 @@ public class ConversionManager
         Action<double> updateProgress,
         Action<string> updateStatus)
     {
+        _cancellationTokenSource= new CancellationTokenSource();
+        
         updateStatus("Getting File Hash");
         var checksum = HashExtractor.GetActivationChecksum(aaxFilePath);
         updateStatus("Getting Activation bytes");
@@ -24,14 +28,15 @@ public class ConversionManager
         var totalDuration = await GetFileDurationAsync(aaxFilePath);
         
         updateStatus("Converting File...");
-        await StartProcessAsync(arguments, totalDuration, updateProgress, updateStatus);
+        await StartProcessAsync(arguments, totalDuration, updateProgress, updateStatus, _cancellationTokenSource.Token);
     }
     
     private async Task StartProcessAsync(
         string arguments, 
         double totalDuration, 
         Action<double> updateProgress, 
-        Action<string> updateStatus)
+        Action<string> updateStatus,
+        CancellationToken cancellationToken)
     {
         ProcessStartInfo startInfo = new ProcessStartInfo
         {
@@ -60,16 +65,37 @@ public class ConversionManager
         
         _conversionProcess.Start();
         _conversionProcess.BeginErrorReadLine();
-        await Task.Run(() => _conversionProcess.WaitForExitAsync());
         
-        updateStatus("Conversion Completed");
+        try
+        {
+            await Task.Run(() => _conversionProcess.WaitForExitAsync(), cancellationToken);
+            
+            if (!cancellationToken.IsCancellationRequested)
+            {
+                updateStatus("Conversion Completed");
+            }
+            
+        }
+        catch (OperationCanceledException)
+        {
+            updateStatus("Conversion Canceled");
+        }
+        finally
+        {
+            _conversionProcess?.Dispose();
+            _conversionProcess = null;
+        }
+        
     }
     
     public void CancelConversion()
     {
         if (_conversionProcess != null && !_conversionProcess.HasExited)
         {
+            _cancellationTokenSource?.Cancel();
             _conversionProcess.Kill();
+            _conversionProcess.Dispose();
+            _conversionProcess = null;
         }
     }
     

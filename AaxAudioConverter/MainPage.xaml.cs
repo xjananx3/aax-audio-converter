@@ -34,7 +34,9 @@ public sealed partial class MainPage : Page
     {
         DisableElements();
         StartBar();
-        ShowStatus("Starting Conversion...");
+        //ShowStatus("Starting Conversion...");
+        CancelButton.Visibility = Visibility.Visible;
+        
         await _conversionManager.StartConversionAsync(
             AaxFileDisplay.Text,
             ExtractFolderDisplay.Text,
@@ -45,7 +47,6 @@ public sealed partial class MainPage : Page
         
         EnableElements();
         StopBar();
-        ShowStatus("Conversion Completed");
         OpenOutputButton.Visibility = Visibility.Visible;
     }
     
@@ -54,7 +55,7 @@ public sealed partial class MainPage : Page
         _conversionManager.CancelConversion();
         ShowStatus("Conversion Canceled");
         StopBar();
-        // EnableElements();
+        EnableElements();
     }
     
     private void OpenOutputButton_Click(object sender, RoutedEventArgs e)
