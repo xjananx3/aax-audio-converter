@@ -238,6 +238,8 @@ ClientBin/
 *.jfm
 *.pfx
 *.publishsettings
+*.targets
+*.props
 orleans.codegen.cs
 
 # Including strong name files can present a security risk
@@ -377,12 +379,11 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # VS Code files for those working on multiple tools
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-*.code-workspace
+.vscode/
+
+# Config Dateien
+.vsconfig
+.editorconfig
 
 # Local History for Visual Studio Code
 .history/

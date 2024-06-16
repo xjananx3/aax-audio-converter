@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1beff502-9039-4824-a335-6c1b24954883" name="Changes" comment="changed Project Name">
+      <change beforePath="$PROJECT_DIR$/AaxAudioConverter/ConversionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AaxAudioConverter/ConversionManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AaxAudioConverter/MainPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/AaxAudioConverter/MainPage.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AaxAudioConverter/MainPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AaxAudioConverter/MainPage.xaml.cs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/AaxAudioConverter/ConversionManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AaxAudioConverter/FileProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AaxAudioConverter/GlobalUsings.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AaxAudioConverter/MainPage.xaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AaxAudioConverter/MainPage.xaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AaxAudioConverter/Platforms/Desktop/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///home/jack/Sources/audible-audio-converter/AudibleAudioConverter/MainPage.xaml" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jack/Sources/audible-audio-converter/AudibleAudioConverter/MainPage.xaml.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/jack/Sources/audible-audio-converter/AudibleAudioConverter/MainPage.xaml.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2hpc1L8YDLZ2lCI2hSLECm02HDt" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.AudibleAudioConverter: AudibleAudioConverter (Desktop).executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/jack/Sources/audible-audio-converter&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/home/jack/.config/JetBrains/Rider2024.1/resharper-host/DecompilerCache&quot;,
+      &quot;/home/jack/.config/JetBrains/Rider2024.1/resharper-host/SourcesCache&quot;,
+      &quot;/home/jack/.local/share/Symbols/src&quot;
+    ]
+  }
+}</component>
+  <component name="RunManager">
+    <configuration default="true" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="" />
+      <option name="LAUNCH_PROFILE_TFM" value="" />
+      <option name="LAUNCH_PROFILE_NAME" value="" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="0" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="0" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="AudibleAudioConverter: AudibleAudioConverter (Desktop)" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/AaxAudioConverter/AaxAudioConverter.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net8.0-desktop" />
+      <option name="LAUNCH_PROFILE_NAME" value="AudibleAudioConverter (Desktop)" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="0" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="0" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration default="true" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="" />
+      <option name="LAUNCH_PROFILE_TFM" value="" />
+      <option name="LAUNCH_PROFILE_NAME" value="" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="0" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="0" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1beff502-9039-4824-a335-6c1b24954883" name="Changes" comment="" />
+      <created>1718294246532</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1718294246532</updated>
+      <workItem from="1718294249143" duration="13447000" />
+      <workItem from="1718315705904" duration="15255000" />
+      <workItem from="1718356658128" duration="4181000" />
+      <workItem from="1718450126701" duration="14511000" />
+      <workItem from="1718489620826" duration="3248000" />
+    </task>
+    <task id="LOCAL-00001" summary="Initial Commit">
+      <option name="closed" value="true" />
+      <created>1718294524252</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1718294524252</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added Readme">
+      <option name="closed" value="true" />
+      <created>1718294566936</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1718294566936</updated>
+    </task>
+    <task id="LOCAL-00003" summary="(UI)Added Buttons and Textboxes for choose aax and extract folder">
+      <option name="closed" value="true" />
+      <created>1718297310829</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1718297310829</updated>
+    </task>
+    <task id="LOCAL-00004" summary="(MainPage)logic added for choose aax and extract folder">
+      <option name="closed" value="true" />
+      <created>1718298097209</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1718298097209</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added Aax Act Client">
+      <option name="closed" value="true" />
+      <created>1718301392474</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1718301392474</updated>
+    </task>
+    <task id="LOCAL-00006" summary="(UI)Added Convert Button">
+      <option name="closed" value="true" />
+      <created>1718301425311</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1718301425311</updated>
+    </task>
+    <task id="LOCAL-00007" summary="(MainPage)Added pre funcionalitys for conversion">
+      <option name="closed" value="true" />
+      <created>1718302564401</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1718302564401</updated>
+    </task>
+    <task id="LOCAL-00008" summary="(MainPage)Adde COnverting File Process">
+      <option name="closed" value="true" />
+      <created>1718303315126</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1718303315126</updated>
+    </task>
+    <task id="LOCAL-00009" summary="(UI)Added Statuslabel">
+      <option name="closed" value="true" />
+      <created>1718303330102</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1718303330102</updated>
+    </task>
+    <task id="LOCAL-00010" summary="(UI)Added Statuslabel">
+      <option name="closed" value="true" />
+      <created>1718304185551</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1718304185551</updated>
+    </task>
+    <task id="LOCAL-00011" summary="(UI)Added Better ui">
+      <option name="closed" value="true" />
+      <created>1718322297987</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1718322297987</updated>
+    </task>
+    <task id="LOCAL-00012" summary="(UI)Selected Standard Quality and Format and Renamed ComboBox Quality Rows">
+      <option name="closed" value="true" />
+      <created>1718323990333</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1718323990333</updated>
+    </task>
+    <task id="LOCAL-00013" summary=" (Mainpage)added Switch statments to for quality and format">
+      <option name="closed" value="true" />
+      <created>1718324028654</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1718324028654</updated>
+    </task>
+    <task id="LOCAL-00014" summary="(MainPage)ref: process wir processInfo inside">
+      <option name="closed" value="true" />
+      <created>1718328768830</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1718328768830</updated>
+    </task>
+    <task id="LOCAL-00015" summary="(MainPage)Added progressbar funcionality">
+      <option name="closed" value="true" />
+      <created>1718359727846</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1718359727846</updated>
+    </task>
+    <task id="LOCAL-00016" summary="(ui)Deleting ScrollViewer">
+      <option name="closed" value="true" />
+      <created>1718359749538</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1718359749538</updated>
+    </task>
+    <task id="LOCAL-00017" summary="(MainPage)ADded Open Output funcionality">
+      <option name="closed" value="true" />
+      <created>1718450389092</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1718450389092</updated>
+    </task>
+    <task id="LOCAL-00018" summary="(MainPage)ref: Using FileProvider correctly with ChooseFile and ChooseFolder">
+      <option name="closed" value="true" />
+      <created>1718452813751</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1718452813751</updated>
+    </task>
+    <task id="LOCAL-00019" summary="(MainPage)ref: Added all conversion logic ConversionManager.cs and reformat">
+      <option name="closed" value="true" />
+      <created>1718456697620</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1718456697620</updated>
+    </task>
+    <task id="LOCAL-00020" summary="(UI)Added Cancel Button">
+      <option name="closed" value="true" />
+      <created>1718489645865</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1718489645865</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fix: Made Status Label visible to Show Status in UI">
+      <option name="closed" value="true" />
+      <created>1718490107769</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1718490107769</updated>
+    </task>
+    <task id="LOCAL-00022" summary="changed Project Name">
+      <option name="closed" value="true" />
+      <created>1718490220337</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1718490220337</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Commit" />
+    <MESSAGE value="Added Readme" />
+    <MESSAGE value="(UI)Added Buttons and Textboxes for choose aax and extract folder" />
+    <MESSAGE value="(MainPage)logic added for choose aax and extract folder" />
+    <MESSAGE value="Added Aax Act Client" />
+    <MESSAGE value="(UI)Added Convert Button" />
+    <MESSAGE value="(MainPage)Added pre funcionalitys for conversion" />
+    <MESSAGE value="(MainPage)Adde COnverting File Process" />
+    <MESSAGE value="(UI)Added StatusMessages" />
+    <MESSAGE value="(UI)Added StatusMessages" />
+    <MESSAGE value="(UI)Added Better ui" />
+    <MESSAGE value="(UI)Selected Standard Quality and Format and Renamed ComboBox Quality Rows" />
+    <MESSAGE value=" (Mainpage)added Switch statments to for quality and format" />
+    <MESSAGE value="(MainPage)ref: process wir processInfo inside" />
+    <MESSAGE value="(MainPage)Added progressbar funcionality" />
+    <MESSAGE value="(ui)Deleting ScrollViewer" />
+    <MESSAGE value="(MainPage)ADded Open Output funcionality" />
+    <MESSAGE value="(MainPage)ref: Using FileProvider correctly with ChooseFile and ChooseFolder" />
+    <MESSAGE value="(MainPage)ref: Added all conversion logic ConversionManager.cs and reformat" />
+    <MESSAGE value="(UI)Added Cancel Button" />
+    <MESSAGE value="fix: Made Status Label visible to Show Status in UI" />
+    <MESSAGE value="changed Project Name" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed Project Name" />
+  </component>
+</project>
